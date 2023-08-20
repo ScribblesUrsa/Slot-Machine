@@ -78,12 +78,12 @@ namespace Slot_Machine
 
             if (characterHolder[3].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[5]))
             {
-                Console.WriteLine("Line 1 Aligns");                                                                        //Not Permanent
+                Console.WriteLine("Line 2 Aligns");                                                                        //Not Permanent
             }
 
             if (characterHolder[6].Equals(characterHolder[7]) && characterHolder[7].Equals(characterHolder[8]))
             {
-                Console.WriteLine("Line 1 Aligns");                                                                        //Not Perma
+                Console.WriteLine("Line 3 Aligns");                                                                        //Not Permanent
             }
         }
     }
