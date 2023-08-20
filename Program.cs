@@ -67,10 +67,24 @@ namespace Slot_Machine
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]); 
             Console.WriteLine();
-            Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]);
+            Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]); 
             Console.WriteLine();
             Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
 
+            if (characterHolder[0].Equals(characterHolder[1]) && characterHolder[1].Equals(characterHolder[2]))
+            {
+                Console.WriteLine("Line 1 Aligns");                                                                        //Not Permanent
+            }
+
+            if (characterHolder[3].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[5]))
+            {
+                Console.WriteLine("Line 1 Aligns");                                                                        //Not Permanent
+            }
+
+            if (characterHolder[6].Equals(characterHolder[7]) && characterHolder[7].Equals(characterHolder[8]))
+            {
+                Console.WriteLine("Line 1 Aligns");                                                                        //Not Perma
+            }
         }
     }
 }
