@@ -4,8 +4,8 @@ namespace Slot_Machine
 {
     internal class Program
     {
-        const int X = 3;
-        const int Y = 3;
+        const int ROW_COUNT = 3;
+        const int COLUMN_COUNT = 3;
         const double PLAY_PER_LINE = 1.5;                                                                                //Either Horizonal, Vertical or DIagonal, does not matter
         const double PLAY_ALL_HORIZONTAL = 4;
         const double PLAY_ALL_VERTICAL = 4;
@@ -19,6 +19,8 @@ namespace Slot_Machine
             Random slotCharacter = new Random();
 
             int slotIndex = 0;
+            int slotRow = 0;
+            int slotColumn = 0;
 
             List<char> reelCharacters = new List<char>()                                                                //List of Slot Machine Character per Column/Reel
             {
@@ -35,12 +37,23 @@ namespace Slot_Machine
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("\n");
 
-            char[,] slots = new char[X, Y];                                                                             //Defining the slot matrices of the game
+            char[,] slots = new char[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
 
             foreach (char slot in slots)
             {
                 slotIndex = slotCharacter.Next(reelCharacters.Count);
                 characterHolder.Add(reelCharacters[slotIndex]);
+            }
+
+            for(int i = 0; i < characterHolder.Count; i++)
+            {
+                while (i <= COLUMN_COUNT)
+                {
+                    slotRow = 0;
+                    slotColumn++;
+                }
+
+                
             }
 
             lineOne.Add(characterHolder[0]);                                                                            //Added array for comparison
@@ -113,6 +126,23 @@ namespace Slot_Machine
             {
                 Console.WriteLine("DLine 3 Aligns");                                                                        //Not Permanent
             }
+            
+            //Checking for multiple line equality
+            if (lineOne.Equals(lineTwo))
+            {
+                Console.WriteLine("Two Lines Match");
+            }
+
+            if (lineOne.Equals(lineThree))
+            {
+                Console.WriteLine("Two Lines Match");
+            }
+
+            if (lineTwo.Equals(lineThree))
+            {
+                Console.WriteLine("Two Lines Match");
+            }
+
         }
     }
 }
