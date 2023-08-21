@@ -28,9 +28,6 @@ namespace Slot_Machine
             };
 
             List<char> characterHolder = new List<char>();                                                              //To Store Character Items Temporarily and placed into the slots
-            List<char> lineOne =  new List<char>();
-            List<char> lineTwo = new List<char>();
-            List<char> lineThree = new List<char>();
 
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("Slot Machine-Very Bad Gambling Habit");
@@ -45,38 +42,27 @@ namespace Slot_Machine
                 characterHolder.Add(reelCharacters[slotIndex]);
             }
 
-            for(int i = 0; i < characterHolder.Count; i++)
+            for(int i = 1; i < characterHolder.Count; i++)
             {
-                while (i <= COLUMN_COUNT)
+                if (i < COLUMN_COUNT)
                 {
                     slotRow = 0;
-                    slotColumn++;
+                    slotColumn = i ;
                 }
 
-                
+                if((i > ROW_COUNT) && i < (COLUMN_COUNT + ROW_COUNT))
+                {
+                    slotRow = 1;
+                    slotColumn = i - COLUMN_COUNT ;
+                }
+
+                if((i>(COLUMN_COUNT + ROW_COUNT)) && (i < (COLUMN_COUNT * ROW_COUNT)))
+                {
+                    slotRow = 2;
+                    slotColumn = (i -  (COLUMN_COUNT + ROW_COUNT));
+                }
+                slots[slotRow, slotColumn] = characterHolder[(i-1)];            
             }
-
-            lineOne.Add(characterHolder[0]);                                                                            //Added array for comparison
-            lineOne.Add(characterHolder[1]);
-            lineOne.Add(characterHolder[2]);
-
-            lineTwo.Add(characterHolder[3]);
-            lineTwo.Add(characterHolder[4]);
-            lineTwo.Add(characterHolder[5]);
-
-            lineThree.Add(characterHolder[6]);
-            lineThree.Add(characterHolder[7]);
-            lineThree.Add(characterHolder[8]);
-
-            slots[0, 0] = characterHolder[0];
-            slots[0, 1] = characterHolder[1];
-            slots[0, 2] = characterHolder[2];
-            slots[1, 0] = characterHolder[3];
-            slots[1, 1] = characterHolder[4];
-            slots[1, 2] = characterHolder[5];
-            slots[2, 0] = characterHolder[6];
-            slots[2, 1] = characterHolder[7];
-            slots[2, 2] = characterHolder[8];
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]); 
             Console.WriteLine();
@@ -127,21 +113,6 @@ namespace Slot_Machine
                 Console.WriteLine("DLine 3 Aligns");                                                                        //Not Permanent
             }
             
-            //Checking for multiple line equality
-            if (lineOne.Equals(lineTwo))
-            {
-                Console.WriteLine("Two Lines Match");
-            }
-
-            if (lineOne.Equals(lineThree))
-            {
-                Console.WriteLine("Two Lines Match");
-            }
-
-            if (lineTwo.Equals(lineThree))
-            {
-                Console.WriteLine("Two Lines Match");
-            }
 
         }
     }
