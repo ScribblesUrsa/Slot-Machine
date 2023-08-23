@@ -6,6 +6,7 @@ namespace Slot_Machine
     {
         const int ROW_COUNT = 3;
         const int COLUMN_COUNT = 3;
+        const int FOR_ITERATION = COLUMN_COUNT + ROW_COUNT - 1;
         const double PLAY_PER_LINE = 1.5;                                                                                //Either Horizonal, Vertical or DIagonal, does not matter
         const double PLAY_ALL_HORIZONTAL = 4;
         const double PLAY_ALL_VERTICAL = 4;
@@ -22,51 +23,53 @@ namespace Slot_Machine
             int slotRow = 0;
             int slotColumn = 0;
 
-            List<char> reelCharacters = new List<char>()                                                                //List of Slot Machine Character per Column/Reel
+            List<string> reelCharacters = new List<string>()                                                                //List of Slot Machine Character per Column/Reel
             {
-            'A', '1',  '5', '7', '$', 'M', '8', '9', '!', '#', 'Q', '%', 'C', 'S', 'Y', 'V', 'W', 'R', 'L', 'F'
+            "*A*", "*1*",  "*5*", "*7*", "*$*", "*M*", "*8*", "*9*", "*!*", "*#*", "*Q*", "*&*", "*C*", "*S*", "*Y*", "*V*", "*W*", "*R*", "*L*", "*F*"
             };
 
-            List<char> characterHolder = new List<char>();                                                              //To Store Character Items Temporarily and placed into the slots
+            List<string> characterHolder = new List<string>();                                                              //To Store Character Items Temporarily and placed into the slots
 
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("Slot Machine-Very Bad Gambling Habit");
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("\n");
 
-            char[,] slots = new char[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
+            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
 
-            foreach (char slot in slots)
+            foreach (string slot in slots)
             {
                 slotIndex = slotCharacter.Next(reelCharacters.Count);
                 characterHolder.Add(reelCharacters[slotIndex]);
             }
 
-            for(int i = 1; i < characterHolder.Count; i++)
+            for (int i = 0; i < characterHolder.Count; i++)
             {
-                if (i < COLUMN_COUNT)
+
+                if (i < ROW_COUNT)
                 {
                     slotRow = 0;
-                    slotColumn = i ;
+                    slotColumn = i;
                 }
 
-                if((i > ROW_COUNT) && i < (COLUMN_COUNT + ROW_COUNT))
+                if (i >= ROW_COUNT && i <= FOR_ITERATION)
                 {
                     slotRow = 1;
-                    slotColumn = i - COLUMN_COUNT ;
+                    slotColumn = i - COLUMN_COUNT;
                 }
 
-                if((i>(COLUMN_COUNT + ROW_COUNT)) && (i < (COLUMN_COUNT * ROW_COUNT)))
+                if (i >= (COLUMN_COUNT + ROW_COUNT))
                 {
                     slotRow = 2;
-                    slotColumn = (i -  (COLUMN_COUNT + ROW_COUNT));
+                    slotColumn = i - (COLUMN_COUNT + ROW_COUNT);
                 }
-                slots[slotRow, slotColumn] = characterHolder[(i-1)];            
+
+                slots[slotRow, slotColumn] = characterHolder[i];
             }
 
-            Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]); 
+            Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
             Console.WriteLine();
-            Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]); 
+            Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]);
             Console.WriteLine();
             Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
 
@@ -112,7 +115,7 @@ namespace Slot_Machine
             {
                 Console.WriteLine("DLine 3 Aligns");                                                                        //Not Permanent
             }
-            
+
 
         }
     }
