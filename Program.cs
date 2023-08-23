@@ -7,7 +7,7 @@ namespace Slot_Machine
         const int ROW_COUNT = 3;
         const int COLUMN_COUNT = 3;
         const int FOR_ITERATION = COLUMN_COUNT + ROW_COUNT - 1;
-        const double PLAY_PER_LINE = 1.5;                                                                                //Either Horizonal, Vertical or DIagonal, does not matter
+        const double PLAY_PER_LINE = 1.5;                                                                                   //Either Horizonal, Vertical or DIagonal, does not matter
         const double PLAY_ALL_HORIZONTAL = 4;
         const double PLAY_ALL_VERTICAL = 4;
         const double PLAY_ALL_DIAGONAL = 2.5;
@@ -17,11 +17,20 @@ namespace Slot_Machine
         const double TRIPLE_LINE_PRIZE = 30;
         static void Main(string[] args)
         {
-            Random slotCharacter = new Random();
-
             int slotIndex = 0;
             int slotRow = 0;
             int slotColumn = 0;
+
+            bool lineHorizontal1 = false;                                                                                   //Setting up bool to determine winnings
+            bool lineHorizontal2 = false;
+            bool lineHorizontal3 = false;
+            bool lineVertical1 = false;
+            bool lineVertical2 = false;
+            bool lineVertical3 = false;
+            bool lineDiagonal1 = false;
+            bool lineDiagonal2 = false;
+
+            Random slotCharacter = new Random();
 
             List<string> reelCharacters = new List<string>()                                                                //List of Slot Machine Character per Column/Reel
             {
