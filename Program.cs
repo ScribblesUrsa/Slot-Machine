@@ -86,43 +86,51 @@ namespace Slot_Machine
             if (characterHolder[0].Equals(characterHolder[1]) && characterHolder[1].Equals(characterHolder[2]))
             {
                 Console.WriteLine("HLine 1 Aligns");                                                                        //Not Permanent
+                lineHorizontal1 = true;
             }
 
             if (characterHolder[3].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[5]))
             {
                 Console.WriteLine("HLine 2 Aligns");                                                                        //Not Permanent
+                lineHorizontal2 = true;
             }
 
             if (characterHolder[6].Equals(characterHolder[7]) && characterHolder[7].Equals(characterHolder[8]))
             {
                 Console.WriteLine("HLine 3 Aligns");                                                                        //Not Permanent
+                lineHorizontal3 = true;
             }
 
             //Vertical Equality check
             if (characterHolder[0].Equals(characterHolder[3]) && characterHolder[3].Equals(characterHolder[6]))
             {
                 Console.WriteLine("VLine 1 Aligns");                                                                        //Not Permanent
+                lineVertical1 = true;
             }
 
             if (characterHolder[1].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[7]))
             {
                 Console.WriteLine("VLine 2 Aligns");                                                                        //Not Permanent
+                lineVertical2 = true;
             }
 
             if (characterHolder[2].Equals(characterHolder[5]) && characterHolder[5].Equals(characterHolder[8]))
             {
                 Console.WriteLine("VLine 3 Aligns");                                                                        //Not Permanent
+                lineVertical3 = true;
             }
 
             //Diagonal Equality Check
             if (characterHolder[0].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[8]))
             {
                 Console.WriteLine("DLine 1 Aligns");                                                                        //Not Permanent
+                lineDiagonal1 = true;
             }
 
             if (characterHolder[2].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[6]))
             {
                 Console.WriteLine("DLine 3 Aligns");                                                                        //Not Permanent
+                lineDiagonal2 = true;
             }
 
 
