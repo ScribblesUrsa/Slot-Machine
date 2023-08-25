@@ -46,35 +46,18 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
 
-            foreach (string slot in slots)
+            for (int i = 0; i < ROW_COUNT - 1; i++)
             {
-                slotIndex = slotCharacter.Next(reelCharacters.Count);
-                characterHolder.Add(reelCharacters[slotIndex]);
+                slotRow = i;
+
+                for (int j = 0; j < COLUMN_COUNT - 1; j++)
+                {
+                    slotIndex = slotCharacter.Next(reelCharacters.Count);
+                    slotColumn = j;
+                    slots[slotRow, slotColumn] = reelCharacters[slotIndex];
+                }
             }
 
-            for (int i = 0; i < characterHolder.Count; i++)
-            {
-
-                if (i < ROW_COUNT)
-                {
-                    slotRow = 0;
-                    slotColumn = i;
-                }
-
-                if (i >= ROW_COUNT && i <= FOR_ITERATION)
-                {
-                    slotRow = 1;
-                    slotColumn = i - COLUMN_COUNT;
-                }
-
-                if (i >= (COLUMN_COUNT + ROW_COUNT))
-                {
-                    slotRow = 2;
-                    slotColumn = i - (COLUMN_COUNT + ROW_COUNT);
-                }
-
-                slots[slotRow, slotColumn] = characterHolder[i];
-            }
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
             Console.WriteLine();
@@ -82,56 +65,7 @@ namespace Slot_Machine
             Console.WriteLine();
             Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
 
-            //Horizonal Equality check
-            if (characterHolder[0].Equals(characterHolder[1]) && characterHolder[1].Equals(characterHolder[2]))
-            {
-                Console.WriteLine("HLine 1 Aligns");                                                                        //Not Permanent
-                lineHorizontal1 = true;
-            }
-
-            if (characterHolder[3].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[5]))
-            {
-                Console.WriteLine("HLine 2 Aligns");                                                                        //Not Permanent
-                lineHorizontal2 = true;
-            }
-
-            if (characterHolder[6].Equals(characterHolder[7]) && characterHolder[7].Equals(characterHolder[8]))
-            {
-                Console.WriteLine("HLine 3 Aligns");                                                                        //Not Permanent
-                lineHorizontal3 = true;
-            }
-
-            //Vertical Equality check
-            if (characterHolder[0].Equals(characterHolder[3]) && characterHolder[3].Equals(characterHolder[6]))
-            {
-                Console.WriteLine("VLine 1 Aligns");                                                                        //Not Permanent
-                lineVertical1 = true;
-            }
-
-            if (characterHolder[1].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[7]))
-            {
-                Console.WriteLine("VLine 2 Aligns");                                                                        //Not Permanent
-                lineVertical2 = true;
-            }
-
-            if (characterHolder[2].Equals(characterHolder[5]) && characterHolder[5].Equals(characterHolder[8]))
-            {
-                Console.WriteLine("VLine 3 Aligns");                                                                        //Not Permanent
-                lineVertical3 = true;
-            }
-
-            //Diagonal Equality Check
-            if (characterHolder[0].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[8]))
-            {
-                Console.WriteLine("DLine 1 Aligns");                                                                        //Not Permanent
-                lineDiagonal1 = true;
-            }
-
-            if (characterHolder[2].Equals(characterHolder[4]) && characterHolder[4].Equals(characterHolder[6]))
-            {
-                Console.WriteLine("DLine 3 Aligns");                                                                        //Not Permanent
-                lineDiagonal2 = true;
-            }
+            //Equality check
 
 
         }
