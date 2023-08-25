@@ -46,11 +46,11 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
 
-            for (int i = 0; i < ROW_COUNT - 1; i++)
+            for (int i = 0; i < ROW_COUNT ; i++)
             {
                 slotRow = i;
 
-                for (int j = 0; j < COLUMN_COUNT - 1; j++)
+                for (int j = 0; j < COLUMN_COUNT ; j++)
                 {
                     slotIndex = slotCharacter.Next(reelCharacters.Count);
                     slotColumn = j;
