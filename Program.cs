@@ -21,15 +21,6 @@ namespace Slot_Machine
             int slotRow = 0;
             int slotColumn = 0;
 
-            bool lineHorizontal1 = false;                                                                                   //Setting up bool to determine winnings
-            bool lineHorizontal2 = false;
-            bool lineHorizontal3 = false;
-            bool lineVertical1 = false;
-            bool lineVertical2 = false;
-            bool lineVertical3 = false;
-            bool lineDiagonal1 = false;
-            bool lineDiagonal2 = false;
-
             Random slotCharacter = new Random();
 
             List<string> reelCharacters = new List<string>()                                                                //List of Slot Machine Character per Column/Reel
