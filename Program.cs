@@ -20,6 +20,7 @@ namespace Slot_Machine
             int slotRow = 0;
             int slotColumn = 0;
             int horizontalWinningCheck = 0;
+            int lineHorizontalWinCount = 0;
 
             Random slotCharacter = new Random();
 
@@ -58,7 +59,7 @@ namespace Slot_Machine
 
                 if (horizontalWinningCheck == ROW_COUNT)
                 {
-                    Console.WriteLine("You win 1 Line Amount");
+                    lineHorizontalWinCount++;
                 }
 
             }
