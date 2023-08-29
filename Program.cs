@@ -6,7 +6,6 @@ namespace Slot_Machine
     {
         const int ROW_COUNT = 3;
         const int COLUMN_COUNT = 3;
-        const int FOR_ITERATION = COLUMN_COUNT + ROW_COUNT - 1;
         const double PLAY_PER_LINE = 1.5;                                                                                   //Either Horizonal, Vertical or DIagonal, does not matter
         const double PLAY_ALL_HORIZONTAL = 4;
         const double PLAY_ALL_VERTICAL = 4;
@@ -20,6 +19,7 @@ namespace Slot_Machine
             int slotIndex = 0;
             int slotRow = 0;
             int slotColumn = 0;
+            int horizontalWinningCheck = 0;
 
             Random slotCharacter = new Random();
 
@@ -35,7 +35,7 @@ namespace Slot_Machine
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("\n");
 
-            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                             //Defining the slot matrices of the game
+            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
 
             for (int i = 0; i < ROW_COUNT ; i++)
             {
@@ -49,6 +49,16 @@ namespace Slot_Machine
                 }
             }
 
+            for (int i = 0 ; i < ROW_COUNT ; i++ )                                                                           //Figuring out how to loop winnings                                      
+            {
+                for(int j = 0 ; j < COLUMN_COUNT ;j++)
+                {
+                    if (slots[i, COLUMN_COUNT].Contains(slots[i, j]))
+                    {
+                        horizontalWinningCheck++;
+                    }
+                }
+            }
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
             Console.WriteLine();
@@ -57,7 +67,6 @@ namespace Slot_Machine
             Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
 
             //Equality check
-
 
         }
     }
