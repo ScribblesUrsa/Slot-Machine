@@ -47,17 +47,20 @@ namespace Slot_Machine
                     slotColumn = j;
                     slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                 }
-            }
 
-            for (int i = 0 ; i < ROW_COUNT ; i++ )                                                                           //Figuring out how to loop winnings                                      
-            {
-                for(int j = 0 ; j < COLUMN_COUNT ;j++)
+                for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
                 {
                     if (slots[i, COLUMN_COUNT].Contains(slots[i, j]))
                     {
                         horizontalWinningCheck++;
                     }
                 }
+
+                if (horizontalWinningCheck == ROW_COUNT)
+                {
+                    Console.WriteLine("You win 1 Line Amount");
+                }
+
             }
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
@@ -65,8 +68,6 @@ namespace Slot_Machine
             Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]);
             Console.WriteLine();
             Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
-
-            //Equality check
 
         }
     }
