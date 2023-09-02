@@ -23,6 +23,8 @@ namespace Slot_Machine
             int verticalWinningCheck = 0;
             int diagonalWinningCheck = 0;
             int lineHorizontalWinCount = 0;
+            int lineVerticalWinCount = 0;
+            int lineDiagonalWinCount = 0;
 
             Random slotCharacter = new Random();
 
@@ -77,6 +79,10 @@ namespace Slot_Machine
                         verticalWinningCheck++;
                     }
                 }
+                if (verticalWinningCheck == ROW_COUNT)
+                {
+                    lineVerticalWinCount++;
+                }
             }
 
             for (int i = 0; i < COLUMN_COUNT; i++)
@@ -86,10 +92,16 @@ namespace Slot_Machine
                     diagonalWinningCheck++;
                 }
 
-                if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - i), ((COLUMN_COUNT - 1)-i)]))
+                if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - i), ((COLUMN_COUNT - 1) - i)]))
                 {
                     diagonalWinningCheck++;
                 }
+
+                if (lineDiagonalWinCount == (ROW_COUNT - 1))
+                {
+                    lineDiagonalWinCount++;
+                }
+
             }
 
 
