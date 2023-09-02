@@ -20,6 +20,8 @@ namespace Slot_Machine
             int slotRow = 0;
             int slotColumn = 0;
             int horizontalWinningCheck = 0;
+            int verticalWinningCheck = 0;
+            int diagonalWinningCheck = 0;
             int lineHorizontalWinCount = 0;
 
             Random slotCharacter = new Random();
@@ -38,11 +40,11 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
 
-            for (int i = 0; i < ROW_COUNT ; i++)
+            for (int i = 0; i < ROW_COUNT; i++)
             {
                 slotRow = i;
 
-                for (int j = 0; j < COLUMN_COUNT ; j++)
+                for (int j = 0; j < COLUMN_COUNT; j++)
                 {
                     slotIndex = slotCharacter.Next(reelCharacters.Count);
                     slotColumn = j;
@@ -51,7 +53,7 @@ namespace Slot_Machine
 
                 for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
                 {
-                    if (slots[i, COLUMN_COUNT].Contains(slots[i, j]))
+                    if (slots[i, (COLUMN_COUNT - 1)].Contains(slots[i, j]))
                     {
                         horizontalWinningCheck++;
                     }
@@ -63,6 +65,33 @@ namespace Slot_Machine
                 }
 
             }
+
+            for (int i = 0; i < COLUMN_COUNT; i++)
+            {
+                slotColumn = i;
+
+                for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
+                {
+                    if (slots[i, (ROW_COUNT - 1)].Contains(slots[i, j]))
+                    {
+                        verticalWinningCheck++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < COLUMN_COUNT; i++)
+            {
+                if (slots[0, 0].Contains(slots[i, i]))
+                {
+                    diagonalWinningCheck++;
+                }
+
+                if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - i), ((COLUMN_COUNT - 1)-i)]))
+                {
+                    diagonalWinningCheck++;
+                }
+            }
+
 
             Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
             Console.WriteLine();
