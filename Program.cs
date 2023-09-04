@@ -42,20 +42,18 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
 
-            for (int i = 0; i < ROW_COUNT; i++)
+            for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
             {
-                slotRow = i;
 
-                for (int j = 0; j < COLUMN_COUNT; j++)
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     slotIndex = slotCharacter.Next(reelCharacters.Count);
-                    slotColumn = j;
                     slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                 }
 
                 for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
                 {
-                    if (slots[i, (COLUMN_COUNT - 1)].Contains(slots[i, j]))
+                    if (slots[slotRow, (COLUMN_COUNT - 1)].Contains(slots[slotRow, j]))
                     {
                         horizontalWinningCheck++;
                     }
@@ -68,13 +66,11 @@ namespace Slot_Machine
 
             }
 
-            for (int i = 0; i < COLUMN_COUNT; i++)
+            for (slotRow = 0; slotRow < COLUMN_COUNT; slotRow++)
             {
-                slotColumn = i;
-
-                for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                                                      //Determining the winnings
                 {
-                    if (slots[i, (ROW_COUNT - 1)].Contains(slots[i, j]))
+                    if (slots[slotRow, (ROW_COUNT - 1)].Contains(slots[slotRow, slotColumn]))
                     {
                         verticalWinningCheck++;
                     }
@@ -85,14 +81,15 @@ namespace Slot_Machine
                 }
             }
 
-            for (int i = 0; i < COLUMN_COUNT; i++)
+            for (slotColumn = 0; slotRow < COLUMN_COUNT; slotRow++)
             {
-                if (slots[0, 0].Contains(slots[i, i]))
+                slotRow = slotRow;
+                if (slots[0, 0].Contains(slots[slotRow, slotColumn]))
                 {
                     diagonalWinningCheck++;
                 }
 
-                if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - i), ((COLUMN_COUNT - 1) - i)]))
+                if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - slotRow), ((COLUMN_COUNT - 1) - slotColumn)]))
                 {
                     diagonalWinningCheck++;
                 }
