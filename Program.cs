@@ -83,7 +83,8 @@ namespace Slot_Machine
 
             for (slotColumn = 0; slotRow < COLUMN_COUNT; slotRow++)
             {
-                slotRow = slotRow;
+                slotRow = slotColumn;
+
                 if (slots[0, 0].Contains(slots[slotRow, slotColumn]))
                 {
                     diagonalWinningCheck++;
