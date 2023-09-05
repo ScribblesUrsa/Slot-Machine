@@ -102,12 +102,15 @@ namespace Slot_Machine
 
             }
 
+            for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+            {
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    Console.Write("  " + slots[slotRow, slotColumn] + "  ");
 
-            Console.WriteLine(slots[0, 0] + " - " + slots[0, 1] + " - " + slots[0, 2]);
-            Console.WriteLine();
-            Console.WriteLine(slots[1, 0] + " - " + slots[1, 1] + " - " + slots[1, 2]);
-            Console.WriteLine();
-            Console.WriteLine(slots[2, 0] + " - " + slots[2, 1] + " - " + slots[2, 2]);
+                }
+                Console.WriteLine("\n");
+            }
 
         }
     }
