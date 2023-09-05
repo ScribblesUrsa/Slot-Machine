@@ -42,6 +42,14 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
 
+            Console.WriteLine("One line of the same characters of any direction wins you $5");
+            Console.WriteLine("Two lines of the same characters of any direction wins you $15");
+            Console.WriteLine("Four lines of the same characters of any direction wins you $25");
+            Console.WriteLine("Jackpot! Is when all is the same! wins you $100!!!");
+
+            Console.WriteLine("Try your luck! Would you like to spin ($2 per spin) Y/N?");
+            Console.ReadKey();
+
             for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
             {
 
