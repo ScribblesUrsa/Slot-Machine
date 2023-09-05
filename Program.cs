@@ -26,7 +26,7 @@ namespace Slot_Machine
             int lineVerticalWinCount = 0;
             int lineDiagonalWinCount = 0;
 
-            Random slotCharacter = new Random();
+            Random randomPickGenerator = new Random();
 
             List<string> reelCharacters = new List<string>()                                                                //List of Slot Machine Character per Column/Reel
             {
@@ -47,7 +47,7 @@ namespace Slot_Machine
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
-                    slotIndex = slotCharacter.Next(reelCharacters.Count);
+                    slotIndex = randomPickGenerator.Next(reelCharacters.Count);
                     slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                 }
 
