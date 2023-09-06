@@ -45,9 +45,13 @@ namespace Slot_Machine
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
 
             Console.WriteLine($"One line of the same characters of any direction wins you ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}");
+            Console.WriteLine();
             Console.WriteLine($"Two lines of the same characters of any direction wins you ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}");
+            Console.WriteLine();
             Console.WriteLine($"Four lines of the same characters of any direction wins you ${QUADRUPLE_DIRECTION_PRIZE}");
+            Console.WriteLine();
             Console.WriteLine($"Jackpot! Is when all is the same! wins you ${TRIPLE_LINE_PRIZE}!!!");
+            Console.WriteLine();
 
             Console.WriteLine($"Try your luck! Would you like to spin (${PRICE_PER_SPIN} per spin)? Y for yes and any other key to exit:");
             playChoice = Console.ReadKey().KeyChar;
@@ -66,7 +70,7 @@ namespace Slot_Machine
                         slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                     }
 
-                    for (int j = 0; j < COLUMN_COUNT; j++)                                                                      //Determining the winnings
+                    for (int j = 0; j < COLUMN_COUNT -2; j++)                                                                      //Determining the winnings
                     {
                         if (slots[slotRow, (COLUMN_COUNT - 1)].Contains(slots[slotRow, j]))
                         {
@@ -83,13 +87,14 @@ namespace Slot_Machine
 
                 for (slotRow = 0; slotRow < COLUMN_COUNT; slotRow++)
                 {
-                    for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                               //Determining the winnings
+                    for (slotColumn = 0; slotColumn < COLUMN_COUNT -2 ; slotColumn++)                                               //Determining the winnings
                     {
                         if (slots[slotRow, (ROW_COUNT - 1)].Contains(slots[slotRow, slotColumn]))
                         {
                             verticalWinningCheck++;
                         }
                     }
+
                     if (verticalWinningCheck == ROW_COUNT)
                     {
                         lineVerticalWinCount++;
