@@ -30,19 +30,21 @@ namespace Slot_Machine
 
             Random randomPickGenerator = new Random();
 
-            List<string> reelCharacters = new List<string>()                                                                //List of Slot Machine Character per Column/Reel
+            List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
             {
-            "*A*", "*1*",  "*5*", "*7*", "*$*", "*M*", "*8*", "*9*", "*!*", "*#*", "*Q*", "*&*", "*C*", "*S*", "*Y*", "*V*", "*W*", "*R*", "*L*", "*F*"
+            "A", "1",  "5", "7", "$",
             };
 
-            List<string> characterHolder = new List<string>();                                                              //To Store Character Items Temporarily and placed into the slots
+            // "M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
+
+            List<string> characterHolder = new List<string>();                                                                                              //To Store Character Items Temporarily and placed into the slots
 
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("Slot Machine-Very Bad Gambling Habit");
             Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
             Console.WriteLine("\n");
 
-            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                          //Defining the slot matrices of the game
+            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                                          //Defining the slot matrices of the game
 
             Console.WriteLine($"One line of the same characters of any direction wins you ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}");
             Console.WriteLine();
@@ -50,7 +52,7 @@ namespace Slot_Machine
             Console.WriteLine();
             Console.WriteLine($"Four lines of the same characters of any direction wins you ${QUADRUPLE_DIRECTION_PRIZE}");
             Console.WriteLine();
-            Console.WriteLine($"Jackpot! Is when all is the same! wins you ${TRIPLE_LINE_PRIZE}!!!");
+            Console.WriteLine($"Jackpot! Is when 3 lines match! wins you ${TRIPLE_LINE_PRIZE}!!!");
             Console.WriteLine();
 
             Console.WriteLine($"Try your luck! Would you like to spin (${PRICE_PER_SPIN} per spin)? Y for yes and any other key to exit:");
@@ -59,8 +61,14 @@ namespace Slot_Machine
 
             while (playChoice.Equals('y'))
             {
-                horizontalWinningCheck = lineHorizontalWinCount = verticalWinningCheck = lineVerticalWinCount = diagonalWinningCheck = lineDiagonalWinCount = 0;
+                horizontalWinningCheck =
+                lineHorizontalWinCount =
+                verticalWinningCheck =
+                lineVerticalWinCount =
+                diagonalWinningCheck =
+                lineDiagonalWinCount = 0;    //Resets values
 
+                /*
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
 
@@ -70,57 +78,19 @@ namespace Slot_Machine
                         slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                     }
 
-                    for (int j = 0; j < COLUMN_COUNT -2; j++)                                                                      //Determining the winnings
-                    {
-                        if (slots[slotRow, (COLUMN_COUNT - 1)].Contains(slots[slotRow, j]))
-                        {
-                            horizontalWinningCheck++;
-                        }
-                    }
-
-                    if (horizontalWinningCheck == ROW_COUNT)
-                    {
-                        lineHorizontalWinCount++;
-                    }
-
                 }
+                */
 
-                for (slotRow = 0; slotRow < COLUMN_COUNT; slotRow++)
-                {
-                    for (slotColumn = 0; slotColumn < COLUMN_COUNT -2 ; slotColumn++)                                               //Determining the winnings
-                    {
-                        if (slots[slotRow, (ROW_COUNT - 1)].Contains(slots[slotRow, slotColumn]))
-                        {
-                            verticalWinningCheck++;
-                        }
-                    }
-
-                    if (verticalWinningCheck == ROW_COUNT)
-                    {
-                        lineVerticalWinCount++;
-                    }
-                }
-
-                for (slotColumn = 0; slotRow < COLUMN_COUNT; slotRow++)
-                {
-                    slotRow = slotColumn;
-
-                    if (slots[0, 0].Contains(slots[slotRow, slotColumn]))
-                    {
-                        diagonalWinningCheck++;
-                    }
-
-                    if (slots[(ROW_COUNT - 1), (COLUMN_COUNT - 1)].Contains(slots[((ROW_COUNT - 1) - slotRow), ((COLUMN_COUNT - 1) - slotColumn)]))
-                    {
-                        diagonalWinningCheck++;
-                    }
-
-                    if (diagonalWinningCheck == (ROW_COUNT - 1))
-                    {
-                        lineDiagonalWinCount++;
-                    }
-
-                }
+                //debugging only:
+                slots[0, 0] = "3";
+                slots[0, 1] = "A";
+                slots[0, 2] = "3";
+                slots[1, 0] = "1";
+                slots[1, 1] = "3";
+                slots[1, 2] = "1";
+                slots[2, 0] = "3";
+                slots[2, 1] = "2";
+                slots[2, 2] = "3";
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
@@ -131,6 +101,53 @@ namespace Slot_Machine
                     }
                     Console.WriteLine("\n");
                 }
+
+                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+                {
+                    verticalWinningCheck = 0;
+                    for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                                                               //Determining the winnings
+                    {
+                        if (slots[slotRow, 0] == slots[slotRow, slotColumn])
+                        {
+                            verticalWinningCheck++;
+                        }
+                    }
+
+                    if (verticalWinningCheck == COLUMN_COUNT)
+                    {
+                        lineVerticalWinCount++;
+                    }
+                }
+
+                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
+                slotRow = 0;
+
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    slotRow = slotColumn;
+
+                    if (slots[0, 0] == slots[slotRow, slotColumn])
+                    {
+                        diagonalWinningCheck++;
+                    }
+                    
+                    if (diagonalWinningCheck == ROW_COUNT)
+                    {
+                        lineDiagonalWinCount++;
+                    }
+
+                    if (slots[ROW_COUNT - 1, 0] == slots[slotRow, COLUMN_COUNT - 1 - slotColumn])
+                    {
+                        diagonalWinningCheck++;
+                    }
+
+                    if (diagonalWinningCheck == ROW_COUNT)
+                    {
+                        lineDiagonalWinCount++;
+                    }
+
+                }
+
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
@@ -149,9 +166,9 @@ namespace Slot_Machine
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
                 }
 
-                if (lineDiagonalWinCount == ROW_COUNT || lineHorizontalWinCount == ROW_COUNT || lineVerticalWinCount == ROW_COUNT)
+                if (lineHorizontalWinCount == ROW_COUNT || lineVerticalWinCount == ROW_COUNT)
                 {
-                    Console.WriteLine($"Jackpot!!!!!");
+                    Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
                 }
 
                 Console.WriteLine($"You have spent: ${moneyWagered}");
