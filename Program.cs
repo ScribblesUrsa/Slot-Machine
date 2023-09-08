@@ -83,11 +83,11 @@ namespace Slot_Machine
 
                 //debugging only:
                 slots[0, 0] = "3";
-                slots[0, 1] = "A";
+                slots[0, 1] = "3";
                 slots[0, 2] = "3";
-                slots[1, 0] = "1";
+                slots[1, 0] = "3";
                 slots[1, 1] = "3";
-                slots[1, 2] = "1";
+                slots[1, 2] = "3";
                 slots[2, 0] = "3";
                 slots[2, 1] = "2";
                 slots[2, 2] = "3";
@@ -116,6 +116,26 @@ namespace Slot_Machine
                     if (verticalWinningCheck == COLUMN_COUNT)
                     {
                         lineVerticalWinCount++;
+                    }
+                }
+
+                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
+                slotRow = 0;
+
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    horizontalWinningCheck = 0;
+                    for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                                                               //Determining the winnings
+                    {
+                        if (slots[0, slotColumn] == slots[slotRow, slotColumn])
+                        {
+                            horizontalWinningCheck++;
+                        }
+                    }
+
+                    if (horizontalWinningCheck == COLUMN_COUNT)
+                    {
+                        lineHorizontalWinCount++;
                     }
                 }
 
