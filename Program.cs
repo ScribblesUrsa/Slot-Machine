@@ -140,6 +140,7 @@ namespace Slot_Machine
 
                 slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
                 slotRow = 0;
+                diagonalWinningCheck = 0;
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
