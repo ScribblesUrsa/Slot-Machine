@@ -129,12 +129,21 @@ namespace Slot_Machine
                     if (slots[0, 0] == slots[slotRow, slotColumn])
                     {
                         diagonalWinningCheck++;
-                    }
-                    
+                    }                   
+
                     if (diagonalWinningCheck == ROW_COUNT)
                     {
                         lineDiagonalWinCount++;
                     }
+
+                }
+
+                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
+                slotRow = 0;
+
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    slotRow = slotColumn;
 
                     if (slots[ROW_COUNT - 1, 0] == slots[slotRow, COLUMN_COUNT - 1 - slotColumn])
                     {
