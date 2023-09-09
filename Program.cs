@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Data;
+﻿
 
 namespace Slot_Machine
 {
@@ -25,6 +24,8 @@ namespace Slot_Machine
             int lineDiagonalWinCount = 0;
             int moneyWagered = 0;
             int numberOfSpins = 0;
+            bool notDoubleLineWin = false;
+            bool notQuadrupleLineWin = false;
 
             char playChoice = ' ';
 
@@ -32,10 +33,8 @@ namespace Slot_Machine
 
             List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
             {
-            "A", "1",  "5", "7", "$",
+            "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
             };
-
-            // "M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
 
             List<string> characterHolder = new List<string>();                                                                                              //To Store Character Items Temporarily and placed into the slots
 
@@ -66,9 +65,10 @@ namespace Slot_Machine
                 verticalWinningCheck =
                 lineVerticalWinCount =
                 diagonalWinningCheck =
-                lineDiagonalWinCount = 0;    //Resets values
+                lineDiagonalWinCount = 0;
+                notDoubleLineWin = false;                                                        //Resets values
+                notQuadrupleLineWin = false;
 
-                /*
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
 
@@ -79,18 +79,6 @@ namespace Slot_Machine
                     }
 
                 }
-                */
-
-                //debugging only:
-                slots[0, 0] = "3";
-                slots[0, 1] = "3";
-                slots[0, 2] = "3";
-                slots[1, 0] = "3";
-                slots[1, 1] = "3";
-                slots[1, 2] = "3";
-                slots[2, 0] = "3";
-                slots[2, 1] = "2";
-                slots[2, 2] = "3";
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
@@ -125,7 +113,7 @@ namespace Slot_Machine
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     horizontalWinningCheck = 0;
-                    for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                                                               //Determining the winnings
+                    for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                                                                           //Determining the winnings
                     {
                         if (slots[0, slotColumn] == slots[slotRow, slotColumn])
                         {
@@ -149,7 +137,7 @@ namespace Slot_Machine
                     if (slots[0, 0] == slots[slotRow, slotColumn])
                     {
                         diagonalWinningCheck++;
-                    }                   
+                    }
 
                     if (diagonalWinningCheck == ROW_COUNT)
                     {
@@ -186,19 +174,23 @@ namespace Slot_Machine
                     Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                 }
 
-                if (lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2)
-                {
-                    Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
-                }
 
-                if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2)
-                {
-                    Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
-                }
-
-                if (lineHorizontalWinCount == ROW_COUNT || lineVerticalWinCount == ROW_COUNT)
+                if (lineHorizontalWinCount == ROW_COUNT)
                 {
                     Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
+                    notQuadrupleLineWin = true;
+                }
+
+                if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && notQuadrupleLineWin == false)
+                {
+                    Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
+                    notDoubleLineWin = true;
+                }
+
+                if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && notDoubleLineWin == false)
+                {
+                    Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
+
                 }
 
                 Console.WriteLine($"You have spent: ${moneyWagered}");
