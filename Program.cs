@@ -192,7 +192,7 @@ namespace Slot_Machine
                 if (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1)
                 {
                     Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
-                    moneyWon = +SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
+                    moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
                 }
 
 
@@ -200,7 +200,7 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
                     notQuadrupleLineWin = true;
-                    moneyWon = +TRIPLE_LINE_PRIZE;
+                    moneyWon += TRIPLE_LINE_PRIZE;
                 }
 
                 if (centreLineWin == true)
@@ -211,14 +211,14 @@ namespace Slot_Machine
                 if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && notQuadrupleLineWin == false)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
-                    moneyWon = +DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
+                    moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
                     notDoubleLineWin = true;
                 }
 
                 if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && notDoubleLineWin == false)
                 {
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
-                    moneyWon = +QUADRUPLE_DIRECTION_PRIZE;
+                    moneyWon += QUADRUPLE_DIRECTION_PRIZE;
 
                 }
                 
@@ -228,12 +228,12 @@ namespace Slot_Machine
                 
                 if (totalTakeHomeMoney>0 )
                 {
-                    Console.WriteLine($"You take home: {totalTakeHomeMoney}");
+                    Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
                 }
 
                 if (totalTakeHomeMoney < 0 )
                 {
-                    Console.WriteLine($"You owe: {totalTakeHomeMoney}");
+                    Console.WriteLine($"You owe: ${totalTakeHomeMoney}");
                 }
 
                 Console.WriteLine("Try again? Y to continue and any other key to exit:");
