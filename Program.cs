@@ -224,16 +224,16 @@ namespace Slot_Machine
                 
                 totalTakeHomeMoney = moneyWagered - moneyWon;
                 Console.WriteLine($"You have spent: ${moneyWagered}");
-                Console.WriteLine($"Total money won: { moneyWon}");
+                Console.WriteLine($"Total money won: ${ moneyWon}");
                 
-                if (totalTakeHomeMoney>0 )
-                {
-                    Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
-                }
-
                 if (totalTakeHomeMoney < 0 )
                 {
                     Console.WriteLine($"You owe: ${totalTakeHomeMoney}");
+                }
+
+                if (totalTakeHomeMoney > 0 )
+                {
+                    Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
                 }
 
                 Console.WriteLine("Try again? Y to continue and any other key to exit:");
