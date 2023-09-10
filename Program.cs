@@ -222,7 +222,7 @@ namespace Slot_Machine
 
                 }
                 
-                totalTakeHomeMoney = Math.Sign(moneyWagered - moneyWon);
+                totalTakeHomeMoney = moneyWagered - moneyWon;
                 Console.WriteLine($"You have spent: ${moneyWagered}");
                 Console.WriteLine($"Total money won: { moneyWon}");
                 
