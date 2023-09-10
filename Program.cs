@@ -81,7 +81,6 @@ namespace Slot_Machine
                         slotIndex = randomPickGenerator.Next(reelCharacters.Count);
                         slots[slotRow, slotColumn] = reelCharacters[slotIndex];
                     }
-
                 }
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
@@ -136,16 +135,16 @@ namespace Slot_Machine
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
-                    if (slots[((ROW_COUNT-1)/2), 0] == slots[((ROW_COUNT - 1) / 2), slotColumn])
+                    if (slots[((ROW_COUNT - 1) / 2), 0] == slots[((ROW_COUNT - 1) / 2), slotColumn])
                     {
                         centreLineCheck++;
                     }
 
-                    if(ROW_COUNT == centreLineCheck)
+                    if (ROW_COUNT == centreLineCheck)
                     {
                         centreLineWin = true;
                     }
-                    
+
                 }
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
@@ -200,9 +199,9 @@ namespace Slot_Machine
                     notQuadrupleLineWin = true;
                 }
 
-                if(centreLineWin == true)
+                if (centreLineWin == true)
                 {
-                    Console.WriteLine("You randomly hit it at the middle!!!")
+                    Console.WriteLine("You randomly hit it at the middle!!!");
                 }
 
                 if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && notQuadrupleLineWin == false)
