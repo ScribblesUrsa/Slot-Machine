@@ -22,8 +22,10 @@ namespace Slot_Machine
             int lineHorizontalWinCount = 0;
             int lineVerticalWinCount = 0;
             int lineDiagonalWinCount = 0;
+            int centreLineCheck = 0;
             int moneyWagered = 0;
             int numberOfSpins = 0;
+            bool centreLineWin = false;
             bool notDoubleLineWin = false;
             bool notQuadrupleLineWin = false;
 
@@ -65,7 +67,9 @@ namespace Slot_Machine
                 verticalWinningCheck =
                 lineVerticalWinCount =
                 diagonalWinningCheck =
-                lineDiagonalWinCount = 0;
+                lineDiagonalWinCount =
+                centreLineCheck = 0;
+                centreLineWin = false;
                 notDoubleLineWin = false;                                                        //Resets values
                 notQuadrupleLineWin = false;
 
@@ -132,6 +136,20 @@ namespace Slot_Machine
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
+                    if (slots[((ROW_COUNT-1)/2), 0] == slots[((ROW_COUNT - 1) / 2), slotColumn])
+                    {
+                        centreLineCheck++;
+                    }
+
+                    if(ROW_COUNT == centreLineCheck)
+                    {
+                        centreLineWin = true;
+                    }
+                    
+                }
+
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
                     slotRow = slotColumn;
 
                     if (slots[0, 0] == slots[slotRow, slotColumn])
@@ -166,6 +184,7 @@ namespace Slot_Machine
 
                 }
 
+
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
@@ -179,6 +198,11 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
                     notQuadrupleLineWin = true;
+                }
+
+                if(centreLineWin == true)
+                {
+                    Console.WriteLine("You randomly hit it at the middle!!!")
                 }
 
                 if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && notQuadrupleLineWin == false)
