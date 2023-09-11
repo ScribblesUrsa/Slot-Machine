@@ -219,9 +219,13 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
                     moneyWon += QUADRUPLE_DIRECTION_PRIZE;
-
                 }
-                
+
+                if (lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0)
+                {
+                    Console.WriteLine("Better Luck Next Time!");
+                }
+
                 totalTakeHomeMoney = moneyWagered - moneyWon;
                 Console.WriteLine($"You have spent: ${moneyWagered}");
                 Console.WriteLine($"Total money won: ${ moneyWon}");
