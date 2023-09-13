@@ -208,14 +208,14 @@ namespace Slot_Machine
                     Console.WriteLine("You randomly hit it at the middle!!!");
                 }
 
-                if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && notQuadrupleLineWin == false)
+                if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && !notQuadrupleLineWin)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
                     notDoubleLineWin = true;
                 }
 
-                if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && notDoubleLineWin == false)
+                if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && !notDoubleLineWin)
                 {
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
                     moneyWon += QUADRUPLE_DIRECTION_PRIZE;
