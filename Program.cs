@@ -135,8 +135,8 @@ namespace Slot_Machine
                         lineHorizontalWinCount++;
                     }
                 }
-                //Sets the value of slotRow and slotColumn to default
-                slotRow = 0;
+
+                slotRow = 0;                                                                                                                                    //Sets the value of slotRow and slotColumn to default
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
@@ -186,11 +186,8 @@ namespace Slot_Machine
 
                 }
 
-
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
-
-
 
                 if (lineHorizontalWinCount == ROW_COUNT)
                 {
