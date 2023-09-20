@@ -11,6 +11,7 @@ namespace Slot_Machine
         const int QUADRUPLE_DIRECTION_PRIZE = 25;
         const int TRIPLE_LINE_PRIZE = 100;
         const int PRICE_PER_SPIN = 2;
+
         static void Main(string[] args)
         {
             int slotIndex = 0;
@@ -30,6 +31,10 @@ namespace Slot_Machine
             bool centreLineWin = false;
             bool notDoubleLineWin = false;
             bool notQuadrupleLineWin = false;
+            bool singleWinCheck = (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 && !notDoubleLineWin);
+            bool doubleWinCheck = (lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) || (lineVerticalWinCount == 1 && (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1)) && !notQuadrupleLineWin;
+            bool quadrupleWinCheck = lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && !notDoubleLineWin;
+            bool noWin = lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0;
 
             char playChoice = ' ';
 
@@ -113,7 +118,6 @@ namespace Slot_Machine
                 }
 
                 slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
-                slotRow = 0;
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
@@ -131,8 +135,7 @@ namespace Slot_Machine
                         lineHorizontalWinCount++;
                     }
                 }
-
-                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
+                //Sets the value of slotRow and slotColumn to default
                 slotRow = 0;
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
@@ -164,8 +167,6 @@ namespace Slot_Machine
                     }
 
                 }
-
-                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
                 slotRow = 0;
                 diagonalWinningCheck = 0;
 
@@ -189,11 +190,6 @@ namespace Slot_Machine
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
-                if (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1)
-                {
-                    Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
-                    moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
-                }
 
 
                 if (lineHorizontalWinCount == ROW_COUNT)
@@ -208,34 +204,40 @@ namespace Slot_Machine
                     Console.WriteLine("You randomly hit it at the middle!!!");
                 }
 
-                if ((lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) && !notQuadrupleLineWin)
+                if (doubleWinCheck == true)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
                     notDoubleLineWin = true;
                 }
 
-                if (lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && !notDoubleLineWin)
+                if (singleWinCheck == true)
+                {
+                    Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
+                    moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
+                }
+
+                if (quadrupleWinCheck == true)
                 {
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
                     moneyWon += QUADRUPLE_DIRECTION_PRIZE;
                 }
 
-                if (lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0)
+                if (noWin == true)
                 {
                     Console.WriteLine("Better Luck Next Time!");
                 }
 
                 totalTakeHomeMoney = moneyWagered - moneyWon;
                 Console.WriteLine($"You have spent: ${moneyWagered}");
-                Console.WriteLine($"Total money won: ${ moneyWon}");
-                
-                if (totalTakeHomeMoney < 0 )
+                Console.WriteLine($"Total money won: ${moneyWon}");
+
+                if (totalTakeHomeMoney < 0)
                 {
                     Console.WriteLine($"You owe: ${totalTakeHomeMoney}");
                 }
 
-                if (totalTakeHomeMoney > 0 )
+                if (totalTakeHomeMoney > 0)
                 {
                     Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
                 }
