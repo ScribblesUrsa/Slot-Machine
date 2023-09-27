@@ -17,20 +17,27 @@ namespace Slot_Machine
             int slotIndex = 0;
             int slotRow = 0;
             int slotColumn = 0;
+
             int horizontalWinningCheck = 0;
             int verticalWinningCheck = 0;
             int diagonalWinningCheck = 0;
+
             int lineHorizontalWinCount = 0;
             int lineVerticalWinCount = 0;
             int lineDiagonalWinCount = 0;
+
             int centreLineCheck = 0;
             int moneyWagered = 0;
             int moneyWon = 0;
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
+
+            bool singleCounts = lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1;
+            bool doubleCounts = lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2;
+
             bool centreLineWin = false;
-            bool doubleWinCheck = (lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) || (lineVerticalWinCount == 1 && (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1));
-            bool singleWinCheck = (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 && doubleWinCheck == false);
+            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == 1 && singleCounts == true;
+            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == 1 && doubleWinCheck == false;
             bool quadrupleWinCheck = lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && doubleWinCheck == false;
             bool noWin = lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0;
 
@@ -188,7 +195,7 @@ namespace Slot_Machine
 
                 if (lineHorizontalWinCount == ROW_COUNT && quadrupleWinCheck == false)
                 {
-                    Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");                 
+                    Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
                     moneyWon += TRIPLE_LINE_PRIZE;
                 }
 
@@ -207,7 +214,7 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
-                    
+
                 }
 
                 if (singleWinCheck == true)
