@@ -29,11 +29,9 @@ namespace Slot_Machine
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
             bool centreLineWin = false;
-            bool notDoubleLineWin = false;
-            bool notQuadrupleLineWin = false;
-            bool singleWinCheck = (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 && !notDoubleLineWin);
-            bool doubleWinCheck = (lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) || (lineVerticalWinCount == 1 && (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1)) && !notQuadrupleLineWin;
-            bool quadrupleWinCheck = lineDiagonalWinCount == 2 && lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && !notDoubleLineWin;
+            bool doubleWinCheck = (lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2) || (lineVerticalWinCount == 1 && (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1));
+            bool singleWinCheck = (lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 && doubleWinCheck == false);
+            bool quadrupleWinCheck = lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && doubleWinCheck == false;
             bool noWin = lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0;
 
             char playChoice = ' ';
@@ -77,8 +75,6 @@ namespace Slot_Machine
                 lineDiagonalWinCount =
                 centreLineCheck = 0;
                 centreLineWin = false;
-                notDoubleLineWin = false;                                                        //Resets values
-                notQuadrupleLineWin = false;
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
@@ -189,26 +185,10 @@ namespace Slot_Machine
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
-                if (lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 || lineVerticalWinCount == 1)
-                {
-                    singleWinCheck = true;
-                }
 
-                if (lineHorizontalWinCount ==2 && lineVerticalWinCount == 2)
+                if (lineHorizontalWinCount == ROW_COUNT && quadrupleWinCheck == false)
                 {
-                    notDoubleLineWin = true;
-                    quadrupleWinCheck = true;
-                }
-
-                if (lineHorizontalWinCount == 2 || lineVerticalWinCount == 2 || lineDiagonalWinCount == 2)
-                {
-                    doubleWinCheck = true;
-                }
-
-                if (lineHorizontalWinCount == ROW_COUNT)
-                {
-                    Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
-                    notQuadrupleLineWin = true;
+                    Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");                 
                     moneyWon += TRIPLE_LINE_PRIZE;
                 }
 
@@ -217,11 +197,17 @@ namespace Slot_Machine
                     Console.WriteLine("You randomly hit it at the middle!!!");
                 }
 
-                if (doubleWinCheck == true)
+                if (quadrupleWinCheck == true)
+                {
+                    Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
+                    moneyWon += QUADRUPLE_DIRECTION_PRIZE;
+                }
+
+                if (doubleWinCheck == true && quadrupleWinCheck == false)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
-
+                    
                 }
 
                 if (singleWinCheck == true)
@@ -230,11 +216,6 @@ namespace Slot_Machine
                     moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
                 }
 
-                if (quadrupleWinCheck == true)
-                {
-                    Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
-                    moneyWon += QUADRUPLE_DIRECTION_PRIZE;
-                }
 
                 if (noWin == true)
                 {
