@@ -189,6 +189,22 @@ namespace Slot_Machine
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
+                if (lineHorizontalWinCount == 1 || lineVerticalWinCount == 1 || lineVerticalWinCount == 1)
+                {
+                    singleWinCheck = true;
+                }
+
+                if (lineHorizontalWinCount ==2 && lineVerticalWinCount == 2)
+                {
+                    notDoubleLineWin = true;
+                    quadrupleWinCheck = true;
+                }
+
+                if (lineHorizontalWinCount == 2 || lineVerticalWinCount == 2 || lineDiagonalWinCount == 2)
+                {
+                    doubleWinCheck = true;
+                }
+
                 if (lineHorizontalWinCount == ROW_COUNT)
                 {
                     Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
@@ -205,7 +221,7 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
-                    notDoubleLineWin = true;
+
                 }
 
                 if (singleWinCheck == true)
