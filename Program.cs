@@ -18,8 +18,7 @@ namespace Slot_Machine
             int slotRow = 0;
             int slotColumn = 0;
 
-            int horizontalWinningCheck = 0;
-            int verticalWinningCheck = 0;
+      
             int diagonalWinningCheck = 0;
 
             int lineHorizontalWinCount = 0;
@@ -35,7 +34,7 @@ namespace Slot_Machine
             bool singleCounts = lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1;
             bool doubleCounts = lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2;
 
-            bool centreLineWin = false;
+           
             bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == 1 && singleCounts == true;
             bool singleWinCheck = singleCounts == true || lineVerticalWinCount == 1 && doubleWinCheck == false;
             bool quadrupleWinCheck = lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && doubleWinCheck == false;
@@ -74,14 +73,13 @@ namespace Slot_Machine
 
             while (playChoice.Equals('y'))
             {
-                horizontalWinningCheck =
-                lineHorizontalWinCount =
-                verticalWinningCheck =
+             
+                lineHorizontalWinCount =              
                 lineVerticalWinCount =
                 diagonalWinningCheck =
                 lineDiagonalWinCount =
                 centreLineCheck = 0;
-                centreLineWin = false;
+                bool centreLineWin = false;
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
@@ -105,16 +103,16 @@ namespace Slot_Machine
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
-                    verticalWinningCheck = 0;
+                    int sameCharacterCount = 0;
                     for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                                                               //Determining the winnings
                     {
                         if (slots[slotRow, 0] == slots[slotRow, slotColumn])
                         {
-                            verticalWinningCheck++;
+                            sameCharacterCount++;
                         }
                     }
 
-                    if (verticalWinningCheck == COLUMN_COUNT)
+                    if (sameCharacterCount == COLUMN_COUNT)
                     {
                         lineVerticalWinCount++;
                     }
@@ -124,16 +122,16 @@ namespace Slot_Machine
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
-                    horizontalWinningCheck = 0;
+                    int sameCharacterCount = 0;
                     for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                                                                           //Determining the winnings
                     {
                         if (slots[0, slotColumn] == slots[slotRow, slotColumn])
                         {
-                            horizontalWinningCheck++;
+                            sameCharacterCount++;
                         }
                     }
 
-                    if (horizontalWinningCheck == COLUMN_COUNT)
+                    if (sameCharacterCount == COLUMN_COUNT)
                     {
                         lineHorizontalWinCount++;
                     }
