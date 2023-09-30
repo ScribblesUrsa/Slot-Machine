@@ -11,9 +11,9 @@ namespace Slot_Machine
         const int QUADRUPLE_DIRECTION_PRIZE = 25;
         const int TRIPLE_LINE_PRIZE = 100;
         const int PRICE_PER_SPIN = 2;
-        const int COUNTER0 = 0;
-        const int COUTNER1 = 1;
-        const int COUNTER2 = 2;
+        const int CONSTANT0 = 0;
+        const int CONSTANT1 = 1;
+        const int CONSTANT2 = 2;
 
         static void Main(string[] args)
         {
@@ -33,15 +33,6 @@ namespace Slot_Machine
             int moneyWon = 0;
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
-
-            bool singleCounts = lineDiagonalWinCount == COUTNER1 || lineHorizontalWinCount == COUTNER1;
-            bool doubleCounts = lineDiagonalWinCount == COUNTER2 || lineHorizontalWinCount == COUNTER2 || lineVerticalWinCount == COUNTER2;
-
-           
-            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == COUTNER1 && singleCounts == true;
-            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == COUTNER1 && doubleWinCheck == false;
-            bool quadrupleWinCheck = lineHorizontalWinCount == COUNTER2 && lineVerticalWinCount == COUNTER2 && doubleWinCheck == false;
-            bool noWin = lineDiagonalWinCount == COUNTER0 && lineHorizontalWinCount == COUNTER0 && lineVerticalWinCount == COUNTER0;
 
             char playChoice = ' ';
 
@@ -192,6 +183,14 @@ namespace Slot_Machine
 
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
+
+                bool singleCounts = lineDiagonalWinCount == CONSTANT1 || lineHorizontalWinCount == CONSTANT1;
+                bool doubleCounts = lineDiagonalWinCount == CONSTANT2 || lineHorizontalWinCount == CONSTANT2 || lineVerticalWinCount == CONSTANT2;
+
+                bool doubleWinCheck = doubleCounts || lineVerticalWinCount == CONSTANT1 && singleCounts;
+                bool singleWinCheck = singleCounts || lineVerticalWinCount == CONSTANT1 && !doubleWinCheck;
+                bool quadrupleWinCheck = lineHorizontalWinCount == CONSTANT2 && lineVerticalWinCount == CONSTANT2 && !doubleWinCheck;
+                bool noWin = lineDiagonalWinCount == CONSTANT0 && lineHorizontalWinCount == CONSTANT0 && lineVerticalWinCount == CONSTANT0;
 
 
                 if (lineHorizontalWinCount == ROW_COUNT && !quadrupleWinCheck)
