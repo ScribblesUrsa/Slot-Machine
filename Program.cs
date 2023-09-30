@@ -11,6 +11,9 @@ namespace Slot_Machine
         const int QUADRUPLE_DIRECTION_PRIZE = 25;
         const int TRIPLE_LINE_PRIZE = 100;
         const int PRICE_PER_SPIN = 2;
+        const int LINE_COUNTER0 = 0;
+        const int LINE_COUNTER1 = 1;
+        const int LINE_COUNTER2 = 2;
 
         static void Main(string[] args)
         {
@@ -31,14 +34,14 @@ namespace Slot_Machine
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
 
-            bool singleCounts = lineDiagonalWinCount == 1 || lineHorizontalWinCount == 1;
-            bool doubleCounts = lineDiagonalWinCount == 2 || lineHorizontalWinCount == 2 || lineVerticalWinCount == 2;
+            bool singleCounts = lineDiagonalWinCount == LINE_COUNTER1 || lineHorizontalWinCount == LINE_COUNTER1;
+            bool doubleCounts = lineDiagonalWinCount == LINE_COUNTER2 || lineHorizontalWinCount == LINE_COUNTER2 || lineVerticalWinCount == LINE_COUNTER2;
 
            
-            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == 1 && singleCounts == true;
-            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == 1 && doubleWinCheck == false;
-            bool quadrupleWinCheck = lineHorizontalWinCount == 2 && lineVerticalWinCount == 2 && doubleWinCheck == false;
-            bool noWin = lineDiagonalWinCount == 0 && lineHorizontalWinCount == 0 && lineVerticalWinCount == 0;
+            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == LINE_COUNTER1 && singleCounts == true;
+            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == LINE_COUNTER1 && doubleWinCheck == false;
+            bool quadrupleWinCheck = lineHorizontalWinCount == LINE_COUNTER2 && lineVerticalWinCount == LINE_COUNTER2 && doubleWinCheck == false;
+            bool noWin = lineDiagonalWinCount == LINE_COUNTER0 && lineHorizontalWinCount == LINE_COUNTER0 && lineVerticalWinCount == LINE_COUNTER0;
 
             char playChoice = ' ';
 
