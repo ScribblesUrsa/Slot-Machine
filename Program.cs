@@ -194,38 +194,38 @@ namespace Slot_Machine
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
 
-                if (lineHorizontalWinCount == ROW_COUNT && quadrupleWinCheck == false)
+                if (lineHorizontalWinCount == ROW_COUNT && !quadrupleWinCheck)
                 {
                     Console.WriteLine($"Jackpot!!!!! You won {TRIPLE_LINE_PRIZE}");
                     moneyWon += TRIPLE_LINE_PRIZE;
                 }
 
-                if (centreLineWin == true)
+                if (centreLineWin)
                 {
                     Console.WriteLine("You randomly hit it at the middle!!!");
                 }
 
-                if (quadrupleWinCheck == true)
+                if (quadrupleWinCheck)
                 {
                     Console.WriteLine($"You win {QUADRUPLE_DIRECTION_PRIZE}!!!");
                     moneyWon += QUADRUPLE_DIRECTION_PRIZE;
                 }
 
-                if (doubleWinCheck == true && quadrupleWinCheck == false)
+                if (doubleWinCheck && !quadrupleWinCheck)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
 
                 }
 
-                if (singleWinCheck == true)
+                if (singleWinCheck)
                 {
                     Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
                 }
 
 
-                if (noWin == true)
+                if (noWin)
                 {
                     Console.WriteLine("Better Luck Next Time!");
                 }
