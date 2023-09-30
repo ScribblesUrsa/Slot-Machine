@@ -247,7 +247,7 @@ namespace Slot_Machine
                 Console.WriteLine("Try again? Y to continue and any other key to exit:");
                 playChoice = Console.ReadKey().KeyChar;
 
-                Console.WriteLine("\n");
+                Console.WriteLine("\n"); 
 
             }
         }
