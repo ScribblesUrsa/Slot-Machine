@@ -11,9 +11,9 @@ namespace Slot_Machine
         const int QUADRUPLE_DIRECTION_PRIZE = 25;
         const int TRIPLE_LINE_PRIZE = 100;
         const int PRICE_PER_SPIN = 2;
-        const int LINE_COUNTER0 = 0;
-        const int LINE_COUNTER1 = 1;
-        const int LINE_COUNTER2 = 2;
+        const int COUNTER0 = 0;
+        const int COUTNER1 = 1;
+        const int COUNTER2 = 2;
 
         static void Main(string[] args)
         {
@@ -34,14 +34,14 @@ namespace Slot_Machine
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
 
-            bool singleCounts = lineDiagonalWinCount == LINE_COUNTER1 || lineHorizontalWinCount == LINE_COUNTER1;
-            bool doubleCounts = lineDiagonalWinCount == LINE_COUNTER2 || lineHorizontalWinCount == LINE_COUNTER2 || lineVerticalWinCount == LINE_COUNTER2;
+            bool singleCounts = lineDiagonalWinCount == COUTNER1 || lineHorizontalWinCount == COUTNER1;
+            bool doubleCounts = lineDiagonalWinCount == COUNTER2 || lineHorizontalWinCount == COUNTER2 || lineVerticalWinCount == COUNTER2;
 
            
-            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == LINE_COUNTER1 && singleCounts == true;
-            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == LINE_COUNTER1 && doubleWinCheck == false;
-            bool quadrupleWinCheck = lineHorizontalWinCount == LINE_COUNTER2 && lineVerticalWinCount == LINE_COUNTER2 && doubleWinCheck == false;
-            bool noWin = lineDiagonalWinCount == LINE_COUNTER0 && lineHorizontalWinCount == LINE_COUNTER0 && lineVerticalWinCount == LINE_COUNTER0;
+            bool doubleWinCheck = doubleCounts == true || lineVerticalWinCount == COUTNER1 && singleCounts == true;
+            bool singleWinCheck = singleCounts == true || lineVerticalWinCount == COUTNER1 && doubleWinCheck == false;
+            bool quadrupleWinCheck = lineHorizontalWinCount == COUNTER2 && lineVerticalWinCount == COUNTER2 && doubleWinCheck == false;
+            bool noWin = lineDiagonalWinCount == COUNTER0 && lineHorizontalWinCount == COUNTER0 && lineVerticalWinCount == COUNTER0;
 
             char playChoice = ' ';
 
@@ -247,7 +247,7 @@ namespace Slot_Machine
                 Console.WriteLine("Try again? Y to continue and any other key to exit:");
                 playChoice = Console.ReadKey().KeyChar;
 
-                Console.WriteLine("\n");
+                Console.WriteLine("\n"); 
 
             }
         }
