@@ -65,6 +65,7 @@ namespace Slot_Machine
             playChoice = Console.ReadKey().KeyChar;
             Console.WriteLine("\n");
 
+
             while (playChoice.Equals('y'))
             {
              
@@ -110,9 +111,7 @@ namespace Slot_Machine
                     {
                         lineVerticalWinCount++;
                     }
-                }
-
-                slotColumn = 0;                                                                                                                                 //Sets the value of slotRow and slotColumn to default
+                }                                                                                                                               //Sets the value of slotRow and slotColumn to default
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
@@ -130,8 +129,6 @@ namespace Slot_Machine
                         lineHorizontalWinCount++;
                     }
                 }
-
-                slotRow = 0;                                                                                                                                    //Sets the value of slotRow and slotColumn to default
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
@@ -162,7 +159,6 @@ namespace Slot_Machine
                     }
 
                 }
-                slotRow = 0;
                 diagonalWinningCheck = 0;
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
