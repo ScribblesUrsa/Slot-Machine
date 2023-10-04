@@ -17,18 +17,7 @@ namespace Slot_Machine
 
         static void Main(string[] args)
         {
-            int slotIndex = 0;
-            int slotRow = 0;
-            int slotColumn = 0;
 
-      
-            int diagonalWinningCheck = 0;
-
-            int lineHorizontalWinCount = 0;
-            int lineVerticalWinCount = 0;
-            int lineDiagonalWinCount = 0;
-
-            int centreLineCheck = 0;
             int moneyWagered = 0;
             int moneyWon = 0;
             int totalTakeHomeMoney = 0;
@@ -68,12 +57,9 @@ namespace Slot_Machine
 
             while (playChoice.Equals('y'))
             {
-             
-                lineHorizontalWinCount =              
-                lineVerticalWinCount =
-                diagonalWinningCheck =
-                lineDiagonalWinCount =
-                centreLineCheck = 0;
+                int slotIndex = 0;
+                int slotRow = 0;
+                int slotColumn = 0;
                 bool centreLineWin = false;
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
@@ -96,6 +82,7 @@ namespace Slot_Machine
                     Console.WriteLine("\n");
                 }
 
+                int lineVerticalWinCount = 0;
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
                     int sameCharacterCount = 0;
@@ -112,7 +99,7 @@ namespace Slot_Machine
                         lineVerticalWinCount++;
                     }
                 }                                                                                                                               //Sets the value of slotRow and slotColumn to default
-
+                int lineHorizontalWinCount = 0;
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     int sameCharacterCount = 0;
@@ -132,6 +119,7 @@ namespace Slot_Machine
 
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
+                    int centreLineCheck = 0;
                     if (slots[((ROW_COUNT - 1) / 2), 0] == slots[((ROW_COUNT - 1) / 2), slotColumn])
                     {
                         centreLineCheck++;
@@ -143,7 +131,9 @@ namespace Slot_Machine
                     }
 
                 }
-
+                
+                int lineDiagonalWinCount = 0;
+                int diagonalWinningCheck = 0;
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     slotRow = slotColumn;
@@ -180,10 +170,10 @@ namespace Slot_Machine
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
-                bool singleCounts = lineDiagonalWinCount == CONSTANT1 || lineHorizontalWinCount == CONSTANT1;
+                bool singleCounts = lineDiagonalWinCount == CONSTANT1 || lineHorizontalWinCount == CONSTANT1 || lineVerticalWinCount == CONSTANT1;
                 bool doubleCounts = lineDiagonalWinCount == CONSTANT2 || lineHorizontalWinCount == CONSTANT2 || lineVerticalWinCount == CONSTANT2;
 
-                bool doubleWinCheck = doubleCounts || lineVerticalWinCount == CONSTANT1 && singleCounts;
+                bool doubleWinCheck = doubleCounts || lineVerticalWinCount == CONSTANT1 && !singleCounts;
                 bool singleWinCheck = singleCounts || lineVerticalWinCount == CONSTANT1 && !doubleWinCheck;
                 bool quadrupleWinCheck = lineHorizontalWinCount == CONSTANT2 && lineVerticalWinCount == CONSTANT2 && !doubleWinCheck;
                 bool noWin = lineDiagonalWinCount == CONSTANT0 && lineHorizontalWinCount == CONSTANT0 && lineVerticalWinCount == CONSTANT0;
