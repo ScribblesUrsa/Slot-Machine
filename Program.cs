@@ -23,8 +23,6 @@ namespace Slot_Machine
             int totalTakeHomeMoney = 0;
             int numberOfSpins = 0;
 
-            char playChoice = ' ';
-
             Random randomPickGenerator = new Random();
 
             List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
@@ -51,11 +49,18 @@ namespace Slot_Machine
             Console.WriteLine();
 
             Console.WriteLine($"Try your luck! Would you like to spin (${PRICE_PER_SPIN} per spin)? Y for yes and any other key to exit:");
-            playChoice = Console.ReadKey().KeyChar;
+            char playChoice = Console.ReadKey().KeyChar;
             Console.WriteLine("\n");
 
+            Console.WriteLine("How many spins would you like to purchase?");
+            int timesOfSpin = 0;
+            while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+            {
+                Console.WriteLine("Please type it a numerical input.");
+            }
 
-            while (playChoice.Equals('y'))
+
+            while (playChoice.Equals('y') && timesOfSpin > 0)
             {
                 int slotIndex = 0;
                 int slotRow = 0;
@@ -131,16 +136,16 @@ namespace Slot_Machine
                     }
 
                 }
-                
+
                 int lineDiagonalWinCount = 0;
                 int diagonalWinningCheck = 0;
                 for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     slotRow = slotColumn;
-
+                    int sameCharacterCount = 0;
                     if (slots[0, 0] == slots[slotRow, slotColumn])
                     {
-                        diagonalWinningCheck++;
+                        sameCharacterCount++;
                     }
 
                     if (diagonalWinningCheck == ROW_COUNT)
@@ -170,12 +175,10 @@ namespace Slot_Machine
                 numberOfSpins++;
                 moneyWagered = numberOfSpins * PRICE_PER_SPIN;
 
-                bool singleCounts = lineDiagonalWinCount == CONSTANT1 || lineHorizontalWinCount == CONSTANT1 || lineVerticalWinCount == CONSTANT1;
-                bool doubleCounts = lineDiagonalWinCount == CONSTANT2 || lineHorizontalWinCount == CONSTANT2 || lineVerticalWinCount == CONSTANT2;
+                bool doubleLineWin = lineDiagonalWinCount == CONSTANT2 || lineHorizontalWinCount == CONSTANT2 || lineVerticalWinCount == CONSTANT2;
+                bool singleLineWin = lineDiagonalWinCount == CONSTANT1 || lineHorizontalWinCount == CONSTANT1 || lineVerticalWinCount == CONSTANT1 && !doubleLineWin;
 
-                bool doubleWinCheck = doubleCounts || lineVerticalWinCount == CONSTANT1 && !singleCounts;
-                bool singleWinCheck = singleCounts || lineVerticalWinCount == CONSTANT1 && !doubleWinCheck;
-                bool quadrupleWinCheck = lineHorizontalWinCount == CONSTANT2 && lineVerticalWinCount == CONSTANT2 && !doubleWinCheck;
+                bool quadrupleWinCheck = lineHorizontalWinCount == CONSTANT2 && lineVerticalWinCount == CONSTANT2 && !doubleLineWin;
                 bool noWin = lineDiagonalWinCount == CONSTANT0 && lineHorizontalWinCount == CONSTANT0 && lineVerticalWinCount == CONSTANT0;
 
 
@@ -196,14 +199,14 @@ namespace Slot_Machine
                     moneyWon += QUADRUPLE_DIRECTION_PRIZE;
                 }
 
-                if (doubleWinCheck && !quadrupleWinCheck)
+                if (doubleLineWin && !quadrupleWinCheck)
                 {
                     Console.WriteLine($"You win ${DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += DOUBLE_LINE_HORIZONAL_VERTICAL_DIAGONAL_PRIZE;
 
                 }
 
-                if (singleWinCheck)
+                if (singleLineWin)
                 {
                     Console.WriteLine($"You win ${SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE}!!!!");
                     moneyWon += SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE;
@@ -228,11 +231,23 @@ namespace Slot_Machine
                 {
                     Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
                 }
+                timesOfSpin--;
 
-                Console.WriteLine("Try again? Y to continue and any other key to exit:");
-                playChoice = Console.ReadKey().KeyChar;
 
-                Console.WriteLine("\n"); 
+                if (timesOfSpin == 0)
+                {
+                    Console.WriteLine("Try again? Y to continue and any other key to exit:");
+                    playChoice = Console.ReadKey().KeyChar;
+                    Console.WriteLine("\n");
+                    if (playChoice == 'y')
+                    {
+                        Console.WriteLine("How many spins would you like to purchase?");
+                        while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+                        {
+                            Console.WriteLine("Please type it a numerical input.");
+                        }
+                    }
+                }
 
             }
         }
