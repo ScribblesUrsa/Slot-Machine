@@ -52,13 +52,15 @@ namespace Slot_Machine
             char playChoice = Console.ReadKey().KeyChar;
             Console.WriteLine("\n");
 
-            Console.WriteLine("How many spins would you like to purchase?");
             int timesOfSpin = 0;
-            while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+            if (playChoice.Equals('y'))
             {
-                Console.WriteLine("Please type it a numerical input.");
+                Console.WriteLine("How many spins would you like to purchase?");
+                while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+                {
+                    Console.WriteLine("Please type it a numerical input.");
+                }
             }
-
 
             while (playChoice.Equals('y') && timesOfSpin > 0)
             {
@@ -233,10 +235,17 @@ namespace Slot_Machine
                 }
                 timesOfSpin--;
 
+                if (timesOfSpin > 0)
+                {
+                    Console.WriteLine("Press Any Key to Spin!");
+                    Console.ReadKey();
+                }
+
 
                 if (timesOfSpin == 0)
                 {
-                    Console.WriteLine("Try again? Y to continue and any other key to exit:");
+                    Console.WriteLine();
+                    Console.WriteLine("Out of spins. Try again? Y to continue and any other key to exit:");
                     playChoice = Console.ReadKey().KeyChar;
                     Console.WriteLine("\n");
                     if (playChoice == 'y')
@@ -250,6 +259,12 @@ namespace Slot_Machine
                 }
 
             }
+
+            if (!playChoice.Equals('y'))
+            {
+                Console.WriteLine("Goodbye.");
+            }
         }
+
     }
 }
