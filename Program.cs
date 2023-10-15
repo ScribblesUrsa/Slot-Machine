@@ -17,7 +17,7 @@ namespace Slot_Machine
             /// <summary>
             /// Displays Main Screen and Corresponding Winning Prices
             /// </summary>
-            static void PrintWelcomeString()
+            static void Print()
             {
 
                 Console.WriteLine("o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o");
@@ -36,6 +36,8 @@ namespace Slot_Machine
             }
             static void Main(string[] args)
             {
+
+            Print();
 
                 Random randomPickGenerator = new Random();
 
@@ -185,7 +187,6 @@ namespace Slot_Machine
                     bool noWin = lineDiagonalWinCount == CONSTANT0 && lineHorizontalWinCount == CONSTANT0 && lineVerticalWinCount == CONSTANT0;
 
                     int moneyWon = 0;
-                    int totalTakeHomeMoney = 0;
 
                     if (lineHorizontalWinCount == ROW_COUNT && !quadrupleWinCheck)
                     {
@@ -223,19 +224,8 @@ namespace Slot_Machine
                         Console.WriteLine("Better Luck Next Time!");
                     }
 
-                    totalTakeHomeMoney = moneyWagered - moneyWon;
-                    Console.WriteLine($"You have spent: ${moneyWagered}");
                     Console.WriteLine($"Total money won: ${moneyWon}");
 
-                    if (totalTakeHomeMoney < 0)
-                    {
-                        Console.WriteLine($"You owe: ${totalTakeHomeMoney}");
-                    }
-
-                    if (totalTakeHomeMoney > 0)
-                    {
-                        Console.WriteLine($"You take home: ${totalTakeHomeMoney}");
-                    }
                     timesOfSpin--;
 
                     if (timesOfSpin > 0)
