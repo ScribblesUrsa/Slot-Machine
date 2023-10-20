@@ -34,6 +34,22 @@ namespace Slot_Machine
             Console.WriteLine();
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
+
+        static string SlotMachineCharacters()
+        {
+            List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
+            {
+            "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
+            };
+
+            List<string> characterHolder = new List<string>();                                                                                              //To Store Character Items Temporarily and placed into the slots
+
+            result = string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];
+        }
+
+        static void W()
+        { 
+        }
         static void Main(string[] args)
         {
 
