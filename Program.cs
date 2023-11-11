@@ -38,20 +38,12 @@ namespace Slot_Machine
 
         static int SpinTimesOption(int timesOfSpin)
         {
-            char playChoice = ' ';
             if (timesOfSpin == 0)
             {
-                Console.WriteLine();
-                Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
-                playChoice = Console.ReadKey().KeyChar;
-                Console.WriteLine("\n");
-                if (playChoice == 'y')
+                Console.WriteLine("How many spins would you like to purchase?");
+                while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
                 {
-                    Console.WriteLine("How many spins would you like to purchase?");
-                    while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
-                    {
-                        Console.WriteLine("Please type it a numerical input.");
-                    }
+                    Console.WriteLine("Please type it a numerical input.");
                 }
             }
 
@@ -74,8 +66,11 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                                          //Defining the slot matrices of the game
 
-            char playChoice = 'y';
+            char playChoice = ' ';
             Console.WriteLine("\n");
+            Console.WriteLine();
+            Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
+            playChoice = Console.ReadKey().KeyChar;
 
             int timesOfSpin = 0;
 
@@ -85,6 +80,7 @@ namespace Slot_Machine
                 int slotRow = 0;
                 int slotColumn = 0;
                 bool centreLineWin = false;
+
 
                 SpinTimesOption(timesOfSpin);
 
