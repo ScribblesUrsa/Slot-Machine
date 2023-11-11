@@ -66,11 +66,7 @@ namespace Slot_Machine
 
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                                          //Defining the slot matrices of the game
 
-            char playChoice = ' ';
-            Console.WriteLine("\n");
-            Console.WriteLine();
-            Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
-            playChoice = Console.ReadKey().KeyChar;
+            char playChoice = 'y';
 
             int timesOfSpin = 0;
 
@@ -81,6 +77,10 @@ namespace Slot_Machine
                 int slotColumn = 0;
                 bool centreLineWin = false;
 
+                Console.WriteLine("\n");
+                Console.WriteLine();
+                Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
+                playChoice = Console.ReadKey().KeyChar;
 
                 SpinTimesOption(timesOfSpin);
 
