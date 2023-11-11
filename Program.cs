@@ -36,7 +36,7 @@ namespace Slot_Machine
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
 
-        public int SpinTimesOption(int timesOfSpin)
+        static int SpinTimesOption(int timesOfSpin)
         {
             char playChoice = ' ';
             if (timesOfSpin == 0)
@@ -86,7 +86,7 @@ namespace Slot_Machine
                 int slotColumn = 0;
                 bool centreLineWin = false;
 
-                SpinTimesOption(int timesOfSpin);
+                SpinTimesOption(timesOfSpin);
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
