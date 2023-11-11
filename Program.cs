@@ -14,6 +14,7 @@ namespace Slot_Machine
         const int CONSTANT0 = 0;
         const int CONSTANT1 = 1;
         const int CONSTANT2 = 2;
+
         /// <summary>
         /// Displays Main Screen and Corresponding Winning Prices
         /// </summary>
@@ -35,8 +36,27 @@ namespace Slot_Machine
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
 
-        static void W()
-        { 
+        public int SpinTimesOption(int timesOfSpin)
+        {
+            char playChoice = ' ';
+            if (timesOfSpin == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
+                playChoice = Console.ReadKey().KeyChar;
+                Console.WriteLine("\n");
+                if (playChoice == 'y')
+                {
+                    Console.WriteLine("How many spins would you like to purchase?");
+                    while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+                    {
+                        Console.WriteLine("Please type it a numerical input.");
+                    }
+                }
+            }
+
+            return timesOfSpin;
+
         }
         static void Main(string[] args)
         {
@@ -59,28 +79,14 @@ namespace Slot_Machine
 
             int timesOfSpin = 0;
 
-            while (playChoice.Equals('y') )
+            while (playChoice.Equals('y'))
             {
                 int slotIndex = 0;
                 int slotRow = 0;
                 int slotColumn = 0;
                 bool centreLineWin = false;
 
-                if (timesOfSpin == 0)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
-                    playChoice = Console.ReadKey().KeyChar;
-                    Console.WriteLine("\n");
-                    if (playChoice == 'y')
-                    {
-                        Console.WriteLine("How many spins would you like to purchase?");
-                        while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
-                        {
-                            Console.WriteLine("Please type it a numerical input.");
-                        }
-                    }
-                }
+                SpinTimesOption(int timesOfSpin);
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
