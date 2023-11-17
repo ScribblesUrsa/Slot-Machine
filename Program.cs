@@ -50,6 +50,8 @@ namespace Slot_Machine
             return timesOfSpin;
 
         }
+
+
         static void Main(string[] args)
         {
 
@@ -79,10 +81,9 @@ namespace Slot_Machine
 
                 Console.WriteLine("\n");
                 Console.WriteLine();
-                Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit:");
-                playChoice = Console.ReadKey().KeyChar;
 
-                SpinTimesOption(timesOfSpin);
+
+                timesOfSpin = SpinTimesOption(timesOfSpin);
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
@@ -248,7 +249,14 @@ namespace Slot_Machine
                     Console.ReadKey();
                 }
 
+                if (timesOfSpin == 0)
+                {
+                    Console.WriteLine(" Y to continue if you like to play, otherwise, press any other key to exit: ");
+                    playChoice = Console.ReadKey().KeyChar;
+                }
+
             }
+
 
             if (!playChoice.Equals('y'))
             {
