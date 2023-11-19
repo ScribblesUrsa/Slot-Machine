@@ -36,8 +36,9 @@ namespace Slot_Machine
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
 
-        static int SpinTimesOption(int timesOfSpin)
+        static int SpinTimesOption()
         {
+            int timesOfSpin = 0;
             if (timesOfSpin == 0)
             {
                 Console.WriteLine("How many spins would you like to purchase?");
@@ -83,7 +84,7 @@ namespace Slot_Machine
                 Console.WriteLine();
 
 
-                timesOfSpin = SpinTimesOption(timesOfSpin);
+                timesOfSpin = SpinTimesOption();
 
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
