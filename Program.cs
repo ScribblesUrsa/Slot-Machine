@@ -52,6 +52,30 @@ namespace Slot_Machine
 
         }
 
+        //generate a 2d array with random symbols
+        static string[,] GenRandomSlotGrid(List<string>symbols)
+        {
+            string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];
+            for (int slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+            {
+                Random randomPickGenerator = new Random();
+                for (int slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    int slotIndex = randomPickGenerator.Next(symbols.Count);
+                    slots[slotRow, slotColumn] = symbols[slotIndex];
+                }
+            }
+            return slots;
+            for (int slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+            {
+                for (int slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                {
+                    Console.Write("  " + slots[slotRow, slotColumn] + "  ");
+                }
+                Console.WriteLine("\n");
+            }
+
+        }
 
         static void Main(string[] args)
         {
@@ -64,9 +88,7 @@ namespace Slot_Machine
             {
             "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
             };
-
-            List<string> characterHolder = new List<string>();                                                                                              //To Store Character Items Temporarily and placed into the slots
-
+        
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                                          //Defining the slot matrices of the game
 
             char playChoice = 'y';
@@ -86,6 +108,8 @@ namespace Slot_Machine
 
                 timesOfSpin = SpinTimesOption();
 
+                slots = GenRandomSlotGrid(reelCharacters);
+
                 for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
                 {
 
@@ -101,7 +125,6 @@ namespace Slot_Machine
                     for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                     {
                         Console.Write("  " + slots[slotRow, slotColumn] + "  ");
-
                     }
                     Console.WriteLine("\n");
                 }
