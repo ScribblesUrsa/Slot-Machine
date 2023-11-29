@@ -62,18 +62,15 @@ namespace Slot_Machine
 
 
         //generate a 2d array with random symbols
-        static string[,] GenRandomSlotGrid(List<string>symbols)
+        static string[,] GenRandomSlotGrid(List<string> symbols)
         {
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];
             for (int slotRow = 0; slotRow < ROW_COUNT; slotRow++)
             {
-                Random randomPickGenerator = new Random();
-
-
                 for (int slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
-                    int slotIndex = randomPickGenerator.Next(symbols.Count);
-                    slots[slotRow, slotColumn] = symbols[slotIndex];
+               
+                    return slots[slotRow, slotColumn] = RandomCharacter(symbols) ;
                 }
             }
             
@@ -85,7 +82,7 @@ namespace Slot_Machine
                 }
                 Console.WriteLine("\n");
             }
-            return slots;
+          
         }
 
         static void Main(string[] args)
