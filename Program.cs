@@ -66,16 +66,22 @@ namespace Slot_Machine
                 }
             }
             return slots;
+
+        }
+
+        static string GeneratorSlotGridOutput(getRandomString)
+        {
+            string[,] slots = new string [getRandomString];
             for (int slotRow = 0; slotRow < ROW_COUNT; slotRow++)
             {
-                for (int slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                     Console.Write("  " + slots[slotRow, slotColumn] + "  ");
                 }
                 Console.WriteLine("\n");
             }
-
         }
+           
 
         static void Main(string[] args)
         {
