@@ -62,7 +62,7 @@ namespace Slot_Machine
 
 
         //generate a 2d array with random symbols
-        static string[,] GenRandomSlotGrid(List<string> symbols)
+        static void string[,] GenRandomSlotGrid(List<string> symbols)
         {
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];
             for (int slotRow = 0; slotRow < ROW_COUNT; slotRow++)
@@ -70,7 +70,7 @@ namespace Slot_Machine
                 for (int slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                 {
                
-                    return slots[slotRow, slotColumn] = RandomCharacter(symbols) ;
+                     slots[slotRow, slotColumn] = RandomCharacter(symbols) ;                                  //Should take out the indexes maybe?
                 }
             }
             
