@@ -51,10 +51,10 @@ namespace Slot_Machine
             return timesOfSpin;
 
         }
-
+        
+        public static readonly Random randomPickGenerator = new Random();
         static string RandomCharacter(List<string> symbols)
         {
-            Random randomPickGenerator = new Random();
             int slotIndex = randomPickGenerator.Next(symbols.Count);
             return symbols[slotIndex];
         }
