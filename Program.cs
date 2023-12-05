@@ -36,6 +36,10 @@ namespace Slot_Machine
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
 
+        public static readonly List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
+            {
+            "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
+            };
         static int SpinTimesOption()
         {
             int timesOfSpin = 0;
@@ -53,6 +57,7 @@ namespace Slot_Machine
         }
         
         public static readonly Random randomPickGenerator = new Random();
+
         static string RandomCharacter(List<string> symbols)
         {
             int slotIndex = randomPickGenerator.Next(symbols.Count);
@@ -94,7 +99,7 @@ namespace Slot_Machine
 
             List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
             {
-            "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
+            "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"          //Data
             };
         
             string[,] slots = new string[ROW_COUNT, COLUMN_COUNT];                                                                                          //Defining the slot matrices of the game
@@ -118,7 +123,7 @@ namespace Slot_Machine
 
                 slots = GenRandomSlotGrid(reelCharacters);
 
-                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                       //Logic
                 {
 
                     for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
@@ -128,7 +133,7 @@ namespace Slot_Machine
                     }
                 }
 
-                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                       //Logic
                 {
                     for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
                     {
@@ -138,7 +143,7 @@ namespace Slot_Machine
                 }
 
                 int lineVerticalWinCount = 0;
-                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)
+                for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                       //Logic
                 {
                     int sameCharacterCount = 0;
                     for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                                                               //Determining the winnings
@@ -155,7 +160,7 @@ namespace Slot_Machine
                     }
                 }                                                                                                                               //Sets the value of slotRow and slotColumn to default
                 int lineHorizontalWinCount = 0;
-                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                               //Logic
                 {
                     int sameCharacterCount = 0;
                     for (slotRow = 0; slotRow < ROW_COUNT; slotRow++)                                                                                           //Determining the winnings
@@ -172,7 +177,7 @@ namespace Slot_Machine
                     }
                 }
 
-                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)
+                for (slotColumn = 0; slotColumn < COLUMN_COUNT; slotColumn++)                                   //Logic
                 {
                     int centreLineCheck = 0;
                     if (slots[((ROW_COUNT - 1) / 2), 0] == slots[((ROW_COUNT - 1) / 2), slotColumn])
