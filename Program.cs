@@ -4,7 +4,7 @@ namespace Slot_Machine
 {
     public static class UIMethods
     {
-        static void PrintHeader()
+        public static void PrintHeader()
         {
 
             const int SINGLE_LINE_HORIZONTAL_VERTICAL_DIAGONAL_PRIZE = 5;
@@ -105,7 +105,7 @@ namespace Slot_Machine
         static void Main(string[] args)
         {
 
-            PrintHeader();
+            UIMethods.PrintHeader();
 
             Random randomPickGenerator = new Random();
 
