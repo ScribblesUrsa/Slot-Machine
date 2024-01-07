@@ -29,8 +29,23 @@ namespace Slot_Machine
             Console.WriteLine($"Try your luck!(${PRICE_PER_SPIN} per spin)?");
         }
 
-    }
+        public static int SpinTimesOption()
+        {
+            int timesOfSpin = 0;
+            if (timesOfSpin == 0)
+            {
+                Console.WriteLine("How many spins would you like to purchase?");
+                while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
+                {
+                    Console.WriteLine("Please type it a numerical input.");
+                }
+            }
 
+            return timesOfSpin;
+
+        }
+    }
+    
     internal class Program
     {
         const int ROW_COUNT = 3;
@@ -52,21 +67,7 @@ namespace Slot_Machine
             {
             "A", "1",  "5", "7", "$","M", "8", "9", "!", "#", "Q", "&", "C", "S", "Y", "V", "W", "R", "L", "F"
             };
-        static int SpinTimesOption()
-        {
-            int timesOfSpin = 0;
-            if (timesOfSpin == 0)
-            {
-                Console.WriteLine("How many spins would you like to purchase?");
-                while (!int.TryParse(Console.ReadLine(), out timesOfSpin))
-                {
-                    Console.WriteLine("Please type it a numerical input.");
-                }
-            }
 
-            return timesOfSpin;
-
-        }
         
         
 
@@ -131,7 +132,7 @@ namespace Slot_Machine
                 Console.WriteLine();
 
 
-                timesOfSpin = SpinTimesOption();
+                timesOfSpin = UIMethods.SpinTimesOption();
 
                 slots = GenRandomSlotGrid(reelCharacters);
 
