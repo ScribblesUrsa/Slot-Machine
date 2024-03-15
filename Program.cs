@@ -45,6 +45,8 @@ namespace Slot_Machine
 
         }
     }
+
+
     
     internal class Program
     {
@@ -73,6 +75,7 @@ namespace Slot_Machine
 
         static string RandomCharacter(List<string> symbols)
         {
+            Random randomPickGenerator = new Random();
             int slotIndex = randomPickGenerator.Next(symbols.Count);
             return symbols[slotIndex];
         }
@@ -108,7 +111,6 @@ namespace Slot_Machine
 
             UIMethods.PrintHeader();
 
-            Random randomPickGenerator = new Random();
 
             List<string> reelCharacters = new List<string>()                                                                                                //List of Slot Machine Character per Column/Reel
             {
